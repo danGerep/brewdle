@@ -9,7 +9,7 @@ class_name Goblin
 
 var busy = false
 var holding_potion = false
-var last_direction := Vector2.DOWN
+var last_direction: Vector2 = Vector2.DOWN
 
 
 func _ready() -> void:
@@ -60,7 +60,6 @@ func _on_potion_created(pos: Vector2) -> void:
 
 
 func update_animation():
-	print(velocity, velocity.length())
 	if velocity.length() < 1.0:
 		if last_direction.y < 0:
 			animated_sprite.play("idle_up")

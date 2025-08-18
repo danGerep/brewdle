@@ -225,7 +225,6 @@ collision_layer = 2
 script = ExtResource("3_twqh0")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6xl0")

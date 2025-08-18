@@ -5,9 +5,13 @@ signal potion_picked_up(goblin: Goblin)
 signal potion_sold(value: int)
 signal potion_delivered
 
+signal cauldron_bought
+
 signal refresh_ui
 
-var gold_amount: int = 0
+var gold_amount: int = 10000
+var current_cauldron_price: int = 10
+var current_goblin_price: int = 10
 
 
 func _ready() -> void:
@@ -16,5 +20,4 @@ func _ready() -> void:
 
 func _on_potion_sold(value: int) -> void:
 	gold_amount += value
-	print("Gold amount is now: %d" % gold_amount)
 	refresh_ui.emit()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=4 uid="uid://b607sb3dyde2k"]
+[gd_scene load_steps=27 format=4 uid="uid://b607sb3dyde2k"]
 
 [ext_resource type="Script" uid="uid://bvtedxiuebej8" path="res://scenes/main.gd" id="1_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://rf3sg5b0knj5" path="res://scenes/cauldron/cauldron.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://cf5nifd3233l8" path="res://scenes/goblins/goblin.tscn" id="2_choun"]
 [ext_resource type="Texture2D" uid="uid://dcvpnw3m3gr0l" path="res://assets/16.png" id="3_muem4"]
 [ext_resource type="Texture2D" uid="uid://biyv6p1wu8oru" path="res://assets/5.png" id="4_85g3d"]
@@ -258,9 +257,6 @@ frame_progress = 1.0
 [node name="GoblinLord" parent="." instance=ExtResource("10_eb6dy")]
 position = Vector2(208, 234)
 
-[node name="Cauldron" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(118, 69)
-
 [node name="Goblin" parent="." instance=ExtResource("2_choun")]
 position = Vector2(40, 153)
 
@@ -298,3 +294,29 @@ position = Vector2(192.5, 247.5)
 texture = ExtResource("5_choun")
 
 [node name="UI" parent="." instance=ExtResource("18_dp3eg")]
+
+[node name="CauldronMarkers" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(119, 71)
+
+[node name="Marker2D2" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(167, 71)
+
+[node name="Marker2D3" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(216, 71)
+
+[node name="Marker2D4" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(264, 71)
+
+[node name="Marker2D5" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(312, 71)
+
+[node name="Marker2D6" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(360, 71)
+
+[node name="Marker2D7" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(408, 71)
+
+[node name="Marker2D8" type="Marker2D" parent="CauldronMarkers"]
+position = Vector2(456, 71)

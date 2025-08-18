@@ -27,11 +27,8 @@ func _on_timer_timeout() -> void:
 		next_slot_index += 1
 
 		GameManager.potion_created.emit(potion_instance.global_position)
-	else:
-		print("no slot available for potion")
 
 
 func remove_potion_used_slot() -> void:
-	print("removing counter")
 	if next_slot_index > 0:
 		next_slot_index -= 1
