@@ -3,6 +3,7 @@ extends Node2D
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var coins_animation: AnimatedSprite2D = $CoinsAnimation
 @onready var cauldron_markers: Node = $CauldronMarkers
+@onready var goblin_markers: Node = $GoblinMarkers
 @onready var ui: CanvasLayer = $UI
 
 
@@ -10,6 +11,7 @@ func _ready() -> void:
 	GameManager.potion_picked_up.connect(_on_potion_picked_up)
 	GameManager.potion_delivered.connect(_on_potion_delivered)
 	GameManager.cauldron_bought.connect(_on_cauldron_bought)
+	GameManager.goblin_bought.connect(_on_goblin_bought)
 
 
 # This happens here because I need to tell the Goblin where to go.
@@ -39,3 +41,19 @@ func _on_cauldron_bought() -> void:
 		cauldron_instance.global_position = marker.global_position
 		cauldrons.append(cauldron_instance)
 		ui.can_buy_cauldron = cauldrons.size() < 8
+
+
+# ---- GOBLIN BUYING ----
+var goblins: Array = []
+const GOBLIN_SCENE = preload("res://scenes/goblins/goblin.tscn")
+
+
+func _on_goblin_bought() -> void:
+	if goblins.size() < 15:
+		var goblin_instance = GOBLIN_SCENE.instantiate()
+		var marker = goblin_markers.get_child(goblins.size())
+
+		marker.add_child(goblin_instance)
+		goblin_instance.global_position = marker.global_position
+		goblins.append(goblin_instance)
+		ui.can_buy_goblin = goblins.size() < 15

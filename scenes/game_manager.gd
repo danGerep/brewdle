@@ -7,6 +7,8 @@ signal potion_delivered
 
 signal cauldron_bought
 
+signal goblin_bought
+
 signal refresh_ui
 
 var gold_amount: int = 10000
