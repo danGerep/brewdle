@@ -1,17 +1,22 @@
 extends Node
 
+@warning_ignore("unused_signal")
 signal potion_created(position: Vector2)
+@warning_ignore("unused_signal")
 signal potion_picked_up(goblin: Goblin)
 signal potion_sold(value: int)
+@warning_ignore("unused_signal")
 signal potion_delivered
 
+@warning_ignore("unused_signal")
 signal cauldron_bought
 
+@warning_ignore("unused_signal")
 signal goblin_bought
 
 signal refresh_ui
 
-var gold_amount: int = 10000
+var gold_amount: int = 20
 var current_cauldron_price: int = 10
 var current_goblin_price: int = 10
 
@@ -23,3 +28,17 @@ func _ready() -> void:
 func _on_potion_sold(value: int) -> void:
 	gold_amount += value
 	refresh_ui.emit()
+
+
+# POTIONS
+
+var potion_pool: Dictionary = {}
+
+
+func add_potion_pool(potion: Potion) -> void:
+	potion_pool[potion.get_instance_id()] = potion
+
+
+func remove_potion_from_pool(potion: Potion) -> void:
+	if potion_pool.size() > 0:
+		potion_pool.erase(potion.get_instance_id())

@@ -26,7 +26,7 @@ func _on_timer_timeout() -> void:
 		add_child(potion_instance)
 		next_slot_index += 1
 
-		GameManager.potion_created.emit(potion_instance.global_position)
+		GameManager.add_potion_pool(potion_instance)
 
 
 func remove_potion_used_slot() -> void:

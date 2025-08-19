@@ -4,6 +4,7 @@ class_name Goblin
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var potion_holder: Marker2D = $PotionHolder
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var potion_pool_timer: Timer = $PotionPoolTimer
 
 @export var movement_speed: float = 40.0
 
@@ -14,7 +15,7 @@ var last_direction: Vector2 = Vector2.DOWN
 
 func _ready() -> void:
 	navigation_agent_2d.velocity_computed.connect(_on_velocity_computed)
-	GameManager.potion_created.connect(_on_potion_created)
+	potion_pool_timer.timeout.connect(_check_potion_pool)
 	update_animation()
 
 
@@ -31,6 +32,7 @@ func _physics_process(_delta):
 				GameManager.potion_delivered.emit()
 			holding_potion = false
 			busy = false
+
 		velocity = Vector2.ZERO
 		update_animation()
 		move_and_slide()
@@ -52,11 +54,19 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	move_and_slide()
 
 
-func _on_potion_created(pos: Vector2) -> void:
+func _check_potion_pool() -> void:
 	if busy:
 		return
-	busy = true
-	set_movement_target(pos)
+
+	if GameManager.potion_pool.is_empty():
+		return
+
+	var potion_key = GameManager.potion_pool.keys().pick_random()
+	var potion = GameManager.potion_pool[potion_key]
+	potion.goblin = self
+
+	GameManager.remove_potion_from_pool(potion)
+	set_movement_target(potion.global_position)
 
 
 func update_animation():
