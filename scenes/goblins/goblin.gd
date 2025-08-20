@@ -61,7 +61,7 @@ func _check_potion_pool() -> void:
 	if GameManager.potion_pool.is_empty():
 		return
 
-	var potion_key = GameManager.potion_pool.keys().pick_random()
+	var potion_key = GameManager.potion_pool.keys().front()
 	var potion = GameManager.potion_pool[potion_key]
 	potion.goblin = self
 	busy = true
