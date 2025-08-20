@@ -4,7 +4,7 @@ extends Node
 signal potion_created(position: Vector2)
 @warning_ignore("unused_signal")
 signal potion_picked_up(goblin: Goblin)
-signal potion_sold(value: int)
+signal potion_sold
 @warning_ignore("unused_signal")
 signal potion_delivered
 
@@ -19,14 +19,16 @@ signal refresh_ui
 var gold_amount: int = 20
 var current_cauldron_price: int = 10
 var current_goblin_price: int = 10
+var current_potion_selling_price: int = 1
+var current_better_potion_price: int = 5
 
 
 func _ready() -> void:
 	potion_sold.connect(_on_potion_sold)
 
 
-func _on_potion_sold(value: int) -> void:
-	gold_amount += value
+func _on_potion_sold() -> void:
+	gold_amount += GameManager.current_potion_selling_price
 	refresh_ui.emit()
 
 

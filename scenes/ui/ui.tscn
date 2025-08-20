@@ -77,3 +77,26 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_u7n8c")
 text = "GOBLIN - 10"
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PotionButton" type="Button" parent="MarginContainer/PanelContainer3/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_u7n8c")
+text = "better
+potion - 10"

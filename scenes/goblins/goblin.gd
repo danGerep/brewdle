@@ -28,7 +28,7 @@ func _physics_process(_delta):
 		if holding_potion:
 			for carried_potion in potion_holder.get_children():
 				carried_potion.queue_free()
-				GameManager.potion_sold.emit(carried_potion.value)
+				GameManager.potion_sold.emit()
 				GameManager.potion_delivered.emit()
 			holding_potion = false
 			busy = false

@@ -3,8 +3,6 @@ class_name Potion
 
 @onready var area_2d: Area2D = $Area2D
 
-@export var value: int = 10
-
 var goblin: Goblin
 
 
