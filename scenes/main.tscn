@@ -248,7 +248,7 @@ tile_set = SubResource("TileSet_trceg")
 
 [node name="CoinsAnimation" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(198, 208)
+position = Vector2(264, 205)
 sprite_frames = SubResource("SpriteFrames_jscy8")
 frame = 4
 frame_progress = 1.0
