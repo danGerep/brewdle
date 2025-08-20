@@ -8,6 +8,7 @@ var goblin: Goblin
 
 func _ready() -> void:
 	area_2d.body_entered.connect(_on_body_entered)
+	modulate = GameManager.current_potion_color
 
 
 func _on_body_entered(area_goblin: Node2D) -> void:

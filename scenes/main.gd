@@ -56,4 +56,3 @@ func _on_goblin_bought() -> void:
 		marker.add_child(goblin_instance)
 		goblin_instance.global_position = marker.global_position
 		goblins.append(goblin_instance)
-		ui.can_buy_goblin = goblins.size() < 15

@@ -20,7 +20,8 @@ var gold_amount: int = 20
 var current_cauldron_price: int = 10
 var current_goblin_price: int = 10
 var current_potion_selling_price: int = 1
-var current_better_potion_price: int = 5
+var current_better_potion_price: int = 100
+var current_potion_color: Color = Color.WHITE
 
 
 func _ready() -> void:
