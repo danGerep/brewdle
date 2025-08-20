@@ -26,4 +26,3 @@ func _on_body_entered(area_goblin: Node2D) -> void:
 	reparent.call_deferred(area_goblin.potion_holder)
 	global_position = area_goblin.potion_holder.global_position
 	area_goblin.holding_potion = true
-	area_goblin.busy = true

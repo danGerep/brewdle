@@ -64,6 +64,7 @@ func _check_potion_pool() -> void:
 	var potion_key = GameManager.potion_pool.keys().pick_random()
 	var potion = GameManager.potion_pool[potion_key]
 	potion.goblin = self
+	busy = true
 
 	GameManager.remove_potion_from_pool(potion)
 	set_movement_target(potion.global_position)
