@@ -5,8 +5,16 @@ class_name Goblin
 @onready var potion_holder: Marker2D = $PotionHolder
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var potion_pool_timer: Timer = $PotionPoolTimer
+@onready var voice_timer: Timer = $VoiceTimer
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var movement_speed: float = 40.0
+
+var audio_list: Array = [
+	"res://assets/audio/ca-ca-ca-ca-ca.wav",
+	"res://assets/audio/talking.mp3",
+	"res://assets/audio/vicious.mp3",
+]
 
 var busy = false
 var holding_potion = false
@@ -16,6 +24,7 @@ var last_direction: Vector2 = Vector2.DOWN
 func _ready() -> void:
 	navigation_agent_2d.velocity_computed.connect(_on_velocity_computed)
 	potion_pool_timer.timeout.connect(_check_potion_pool)
+	voice_timer.timeout.connect(_on_voice_timer_timeout)
 	update_animation()
 
 
@@ -94,3 +103,11 @@ func update_animation():
 			animated_sprite.play("walking_d")
 		else:
 			animated_sprite.play("walking_u")
+
+
+func _on_voice_timer_timeout() -> void:
+	if holding_potion and randi() % 10 == 0:
+		var random_index = randi() % audio_list.size()
+		var audio_file = audio_list[random_index]
+		audio_stream_player.stream = load(audio_file)
+		audio_stream_player.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b607sb3dyde2k"]
+[gd_scene load_steps=27 format=4 uid="uid://b607sb3dyde2k"]
 
 [ext_resource type="Script" uid="uid://bvtedxiuebej8" path="res://scenes/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://dcvpnw3m3gr0l" path="res://assets/16.png" id="3_muem4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c6mb37ulwep62" path="res://scenes/goblins/goblin_lord.tscn" id="10_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://ybi4q5ksgla3" path="res://assets/chair.png" id="10_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://b7d40h8poc8t0" path="res://assets/Tileset.png" id="11_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://buleem2ikonms" path="res://assets/audio/main-music.wav" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://c2vs842iv1wnu" path="res://scenes/ui/ui.tscn" id="18_dp3eg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jkv2x"]
@@ -363,3 +364,7 @@ texture = ExtResource("10_ya4ey")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(264, 205)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_muem4")
+autoplay = true
