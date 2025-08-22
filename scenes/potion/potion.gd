@@ -5,6 +5,7 @@ class_name Potion
 @onready var liquid_sprite: Sprite2D = %LiquidSprite
 
 var goblin: Goblin
+var cauldron_position_index: int = 0
 
 
 func _ready() -> void:
@@ -21,7 +22,7 @@ func _on_body_entered(area_goblin: Node2D) -> void:
 
 	area_2d.set_deferred("monitoring", false)
 	# Remove potion from cauldron slot.
-	get_parent().remove_potion_used_slot()
+	get_parent().remove_potion_used_slot(cauldron_position_index)
 
 	reparent.call_deferred(area_goblin.potion_holder)
 	global_position = area_goblin.potion_holder.global_position

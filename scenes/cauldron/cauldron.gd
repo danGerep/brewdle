@@ -9,26 +9,40 @@ const CAULDRON_FULL = preload("res://assets/cauldron-full.png")
 const CAULDRON = preload("res://assets/cauldron.png")
 
 var potion_slots = []
-var next_slot_index = 0
+var potion_dictionary: Dictionary = {}
 
 
 func _ready() -> void:
 	potion_slots = slots.get_children()
+
+	for slot in range(potion_slots.size()):
+		potion_dictionary[slot] = false
 
 	timer.timeout.connect(_on_timer_timeout)
 	sprite_2d.texture = CAULDRON_FULL
 
 
 func _on_timer_timeout() -> void:
-	if next_slot_index < potion_slots.size():
-		var potion_instance = POTION.instantiate()
-		potion_instance.position = potion_slots[next_slot_index].position
-		add_child(potion_instance)
-		next_slot_index += 1
+	var available_slot = -1
 
-		GameManager.add_potion_pool(potion_instance)
+	for slot in potion_dictionary:
+		if potion_dictionary[slot] == false:
+			available_slot = slot
+			break
+
+	if available_slot == -1:
+		return
+
+	potion_dictionary[available_slot] = true
+
+	var potion_instance = POTION.instantiate()
+	potion_instance.position = potion_slots[available_slot].position
+	potion_instance.cauldron_position_index = available_slot
+	add_child(potion_instance)
+
+	GameManager.add_potion_pool(potion_instance)
 
 
-func remove_potion_used_slot() -> void:
-	if next_slot_index > 0:
-		next_slot_index -= 1
+func remove_potion_used_slot(index: int) -> void:
+	potion_dictionary[index] = false
+	print(potion_dictionary)

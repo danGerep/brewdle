@@ -16,7 +16,7 @@ signal goblin_bought
 
 signal refresh_ui
 
-var gold_amount: int = 40
+var gold_amount: int = 4000
 var current_cauldron_price: int = 10
 var current_goblin_price: int = 10
 var current_potion_selling_price: int = 1

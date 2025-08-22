@@ -18,10 +18,10 @@ autostart = true
 position = Vector2(-14, -16)
 
 [node name="Marker2D2" type="Marker2D" parent="Slots"]
-position = Vector2(-13, 15)
+position = Vector2(14, -16)
 
 [node name="Marker2D3" type="Marker2D" parent="Slots"]
-position = Vector2(13, -16)
+position = Vector2(14, 14)
 
 [node name="Marker2D4" type="Marker2D" parent="Slots"]
-position = Vector2(13, 15)
+position = Vector2(-14, 14)
