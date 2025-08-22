@@ -2,101 +2,103 @@
 
 [ext_resource type="Script" uid="uid://c6sc0ogj8td4d" path="res://scenes/ui/ui.gd" id="1_aac20"]
 [ext_resource type="Texture2D" uid="uid://c0fv8msfdm71i" path="res://assets/20.png" id="1_f5cxw"]
-[ext_resource type="FontFile" uid="uid://mabp281h4x3i" path="res://assets/font/TinyFontCraftpixPixel.otf" id="1_u7n8c"]
+[ext_resource type="Theme" uid="uid://dv2g7xrgnngvk" path="res://scenes/ui/ui.tres" id="4_g5kmx"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_aac20")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("1_f5cxw")
 expand_mode = 2
 
-[node name="Gold" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Gold" type="Label" parent="Control/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u7n8c")
+theme = ExtResource("4_g5kmx")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 16
 text = "GOLD:"
 
-[node name="GoldAmount" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="GoldAmount" type="Label" parent="Control/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u7n8c")
+theme = ExtResource("4_g5kmx")
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 16
 text = "0"
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer2"]
+[node name="HBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/PanelContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer2/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="CauldronButton" type="Button" parent="MarginContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="CauldronButton" type="Button" parent="Control/MarginContainer/PanelContainer2/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u7n8c")
-text = "CAULDRON - 10"
+theme = ExtResource("4_g5kmx")
+theme_type_variation = &"cauldron_button"
+text = "10"
+expand_icon = true
 
-[node name="GoblinButton" type="Button" parent="MarginContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="GoblinButton" type="Button" parent="Control/MarginContainer/PanelContainer2/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u7n8c")
-text = "GOBLIN - 10"
+theme = ExtResource("4_g5kmx")
+theme_type_variation = &"goblin_button"
+text = "10"
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme = ExtResource("4_g5kmx")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer3"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer3/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="PotionButton" type="Button" parent="MarginContainer/PanelContainer3/MarginContainer/HBoxContainer"]
+[node name="PotionButton" type="Button" parent="Control/MarginContainer/PanelContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u7n8c")
-text = "better
-potion - 10"
+theme = ExtResource("4_g5kmx")
+theme_type_variation = &"potion_button"
+disabled = true
+text = "10"
+
+[node name="LabelPlaceholder" type="Marker2D" parent="Control"]
+unique_name_in_owner = true
+position = Vector2(210, 240)

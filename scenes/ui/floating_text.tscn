@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddkeiprba5gtb"]
+
+[ext_resource type="Script" uid="uid://bvjgfadmqrdfw" path="res://scenes/ui/floating_text.gd" id="1_0qskq"]
+[ext_resource type="Theme" uid="uid://dv2g7xrgnngvk" path="res://scenes/ui/ui.tres" id="1_x405i"]
+
+[node name="FloatingText" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -479.0
+offset_bottom = -247.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x405i")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "+1 G"
+script = ExtResource("1_0qskq")

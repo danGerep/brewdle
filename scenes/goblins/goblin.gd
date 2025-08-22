@@ -5,21 +5,17 @@ class_name Goblin
 @onready var potion_holder: Marker2D = $PotionHolder
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var potion_pool_timer: Timer = $PotionPoolTimer
-@onready var selling_price_label: Label = $SellingPriceLabel
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var movement_speed: float = 40.0
 
 var busy = false
 var holding_potion = false
 var last_direction: Vector2 = Vector2.DOWN
-var selling_animation: Node2D = null
 
 
 func _ready() -> void:
 	navigation_agent_2d.velocity_computed.connect(_on_velocity_computed)
 	potion_pool_timer.timeout.connect(_check_potion_pool)
-	selling_price_label.text = ""
 	update_animation()
 
 
@@ -34,9 +30,6 @@ func _physics_process(_delta):
 				carried_potion.queue_free()
 				GameManager.potion_sold.emit()
 				GameManager.potion_delivered.emit()
-				selling_price_label.text = "+" + str(GameManager.current_potion_selling_price)
-
-				animation_player.play("selling")
 			# Reset goblin state after selling potion.
 			holding_potion = false
 			busy = false

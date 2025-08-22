@@ -10,7 +10,6 @@ script = ExtResource("1_tvp6t")
 texture = ExtResource("1_8w4fm")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
 autostart = true
 
 [node name="Slots" type="Node2D" parent="."]

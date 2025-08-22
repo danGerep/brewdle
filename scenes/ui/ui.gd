@@ -5,9 +5,12 @@ extends CanvasLayer
 @onready var goblin_button: Button = %GoblinButton
 @onready var better_potion_button: Button = %PotionButton
 
+@onready var label_placeholder: Marker2D = %LabelPlaceholder
+
 
 func _ready() -> void:
 	GameManager.refresh_ui.connect(_on_refresh_ui)
+	GameManager.potion_sold.connect(_on_potion_sold)
 
 	cauldron_button.pressed.connect(_on_cauldron_button_pressed)
 	goblin_button.pressed.connect(_on_goblin_button_pressed)
@@ -18,9 +21,9 @@ func _ready() -> void:
 
 func _on_refresh_ui() -> void:
 	gold_amount_label.text = str(GameManager.gold_amount)
-	cauldron_button.text = "CAULDRON - %d" % GameManager.current_cauldron_price
-	goblin_button.text = "GOBLIN - %d" % GameManager.current_goblin_price
-	better_potion_button.text = "BETTER\nPOTION - %d" % GameManager.current_better_potion_price
+	cauldron_button.text = "%d" % GameManager.current_cauldron_price
+	goblin_button.text = "%d" % GameManager.current_goblin_price
+	better_potion_button.text = "%d" % GameManager.current_better_potion_price
 
 	cauldron_button.disabled = GameManager.gold_amount < GameManager.current_cauldron_price
 	goblin_button.disabled = GameManager.gold_amount < GameManager.current_goblin_price
@@ -81,3 +84,23 @@ func _on_better_potion_button_pressed() -> void:
 		GameManager.current_potion_selling_price += 1
 		GameManager.current_potion_color = potion_colors[randi() % potion_colors.size()]
 	_on_refresh_ui()
+
+
+const FloatingTextScene = preload("res://scenes/ui/floating_text.tscn")
+
+
+func _on_potion_sold() -> void:
+	var floating_text = FloatingTextScene.instantiate()
+
+	add_child(floating_text)
+
+	var popup_text = "+%s G" % GameManager.current_potion_selling_price
+	var start_position = (
+		label_placeholder.global_position + Vector2(randi_range(-20, 20), randi_range(-20, -20))
+	)
+	floating_text.start(popup_text, start_position)
+
+	# Flash the gold amount label to indicate an increase.
+	var flash_tween = create_tween()
+	flash_tween.tween_property(gold_amount_label, "modulate", Color(1, 1, 0), 0.0)
+	flash_tween.tween_property(gold_amount_label, "modulate", Color(1, 1, 1), 0.5)

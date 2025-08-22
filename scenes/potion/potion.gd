@@ -2,13 +2,14 @@ extends Node2D
 class_name Potion
 
 @onready var area_2d: Area2D = $Area2D
+@onready var liquid_sprite: Sprite2D = %LiquidSprite
 
 var goblin: Goblin
 
 
 func _ready() -> void:
 	area_2d.body_entered.connect(_on_body_entered)
-	modulate = GameManager.current_potion_color
+	liquid_sprite.modulate = GameManager.current_potion_color
 
 
 func _on_body_entered(area_goblin: Node2D) -> void:

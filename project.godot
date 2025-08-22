@@ -27,6 +27,10 @@ window/size/mode=2
 window/size/initial_position_type=3
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom="uid://dv2g7xrgnngvk"
+
 [layer_names]
 
 2d_physics/layer_2="GOBLINS"

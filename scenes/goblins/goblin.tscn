@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cf5nifd3233l8"]
+[gd_scene load_steps=35 format=3 uid="uid://cf5nifd3233l8"]
 
 [ext_resource type="Texture2D" uid="uid://iq1i5ejs0y08" path="res://assets/S_Idle.png" id="1_8lag0"]
 [ext_resource type="Texture2D" uid="uid://ddk3hayx25ocn" path="res://assets/U_Idle.png" id="2_twqh0"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dkwywqfxrb0ph" path="res://assets/D_Walk.png" id="4_cwvx0"]
 [ext_resource type="Texture2D" uid="uid://sw3lyqpry4kg" path="res://assets/S_Walk.png" id="5_o2vin"]
 [ext_resource type="Texture2D" uid="uid://csyydd818hmyo" path="res://assets/U_Walk.png" id="6_xsbo5"]
-[ext_resource type="FontFile" uid="uid://mabp281h4x3i" path="res://assets/font/TinyFontCraftpixPixel.otf" id="7_o2vin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sugp2"]
 atlas = ExtResource("1_8lag0")
@@ -221,91 +220,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_twqh0"]
 radius = 6.0
 
-[sub_resource type="Animation" id="Animation_o2vin"]
-resource_name = "selling"
-length = 0.55
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SellingPriceLabel:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.466667, 0.533333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SellingPriceLabel:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.466667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(5, -15)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SellingPriceLabel:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.533333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [""]
-}
-
-[sub_resource type="Animation" id="Animation_xsbo5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SellingPriceLabel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SellingPriceLabel:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SellingPriceLabel:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["+2"]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur3ob"]
-_data = {
-&"RESET": SubResource("Animation_xsbo5"),
-&"selling": SubResource("Animation_o2vin")
-}
-
 [node name="Goblin" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("3_twqh0")
@@ -328,15 +242,3 @@ position = Vector2(0, -16)
 [node name="PotionPoolTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
-
-[node name="SellingPriceLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-scale = Vector2(1e-05, 1e-05)
-theme_override_fonts/font = ExtResource("7_o2vin")
-text = "+2"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ur3ob")
-}
