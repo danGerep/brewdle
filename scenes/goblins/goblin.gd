@@ -81,6 +81,10 @@ func update_animation():
 
 	last_direction = velocity.normalized()
 
+	if holding_potion:
+		animated_sprite.play("walking_carrying")
+		return
+
 	if abs(velocity.x) > abs(velocity.y):
 		animated_sprite.play("walking_s")
 		animated_sprite.flip_h = true

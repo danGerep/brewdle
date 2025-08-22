@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://cf5nifd3233l8"]
+[gd_scene load_steps=42 format=3 uid="uid://cf5nifd3233l8"]
 
 [ext_resource type="Texture2D" uid="uid://iq1i5ejs0y08" path="res://assets/S_Idle.png" id="1_8lag0"]
 [ext_resource type="Texture2D" uid="uid://ddk3hayx25ocn" path="res://assets/U_Idle.png" id="2_twqh0"]
 [ext_resource type="Script" uid="uid://t24ww1wpvf3s" path="res://scenes/goblins/goblin.gd" id="3_twqh0"]
 [ext_resource type="Texture2D" uid="uid://dkwywqfxrb0ph" path="res://assets/D_Walk.png" id="4_cwvx0"]
+[ext_resource type="Texture2D" uid="uid://cu6mvm2qkukau" path="res://assets/goblinWithDaHands3.0.png" id="4_o2vin"]
 [ext_resource type="Texture2D" uid="uid://sw3lyqpry4kg" path="res://assets/S_Walk.png" id="5_o2vin"]
 [ext_resource type="Texture2D" uid="uid://csyydd818hmyo" path="res://assets/U_Walk.png" id="6_xsbo5"]
 
@@ -38,6 +39,30 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("2_twqh0")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsbo5"]
+atlas = ExtResource("4_o2vin")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oapvt"]
+atlas = ExtResource("4_o2vin")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqqwp"]
+atlas = ExtResource("4_o2vin")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpu61"]
+atlas = ExtResource("4_o2vin")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po2yj"]
+atlas = ExtResource("4_o2vin")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dlal"]
+atlas = ExtResource("4_o2vin")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur3ob"]
 atlas = ExtResource("4_cwvx0")
@@ -149,6 +174,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xsbo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oapvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqqwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpu61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po2yj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dlal")
+}],
+"loop": true,
+"name": &"walking_carrying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ur3ob")
 }, {
 "duration": 1.0,
@@ -229,8 +277,10 @@ movement_speed = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6xl0")
-animation = &"walking_u"
+animation = &"walking_carrying"
 autoplay = "idle"
+frame = 3
+frame_progress = 0.916336
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
