@@ -4,8 +4,10 @@ extends CanvasLayer
 @onready var cauldron_button: Button = %CauldronButton
 @onready var goblin_button: Button = %GoblinButton
 @onready var better_potion_button: Button = %PotionButton
-
 @onready var label_placeholder: Marker2D = %LabelPlaceholder
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+var click_sound: AudioStream = preload("res://assets/audio/ui/drop_004.ogg")
 
 
 func _ready() -> void:
@@ -43,6 +45,8 @@ func _on_cauldron_button_pressed() -> void:
 		GameManager.gold_amount -= GameManager.current_cauldron_price
 		GameManager.current_cauldron_price += 5
 		GameManager.cauldron_bought.emit()
+		_click_sound()
+
 	_on_refresh_ui()
 
 
@@ -51,6 +55,8 @@ func _on_goblin_button_pressed() -> void:
 		GameManager.gold_amount -= GameManager.current_goblin_price
 		GameManager.current_goblin_price += 5
 		GameManager.goblin_bought.emit()
+		_click_sound()
+
 	_on_refresh_ui()
 
 
@@ -83,6 +89,8 @@ func _on_better_potion_button_pressed() -> void:
 		GameManager.current_better_potion_price += 5
 		GameManager.current_potion_selling_price += 1
 		GameManager.current_potion_color = potion_colors[randi() % potion_colors.size()]
+		_click_sound()
+
 	_on_refresh_ui()
 
 
@@ -104,3 +112,9 @@ func _on_potion_sold() -> void:
 	var flash_tween = create_tween()
 	flash_tween.tween_property(gold_amount_label, "modulate", Color(1, 1, 0), 0.0)
 	flash_tween.tween_property(gold_amount_label, "modulate", Color(1, 1, 1), 0.5)
+
+
+func _click_sound() -> void:
+	audio_stream_player.stream = click_sound
+	audio_stream_player.pitch_scale = randf_range(0.5, 1.5)
+	audio_stream_player.play()

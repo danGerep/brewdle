@@ -102,3 +102,5 @@ text = "10"
 [node name="LabelPlaceholder" type="Marker2D" parent="Control"]
 unique_name_in_owner = true
 position = Vector2(210, 240)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

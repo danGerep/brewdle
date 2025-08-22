@@ -5,6 +5,12 @@ extends Node2D
 @onready var cauldron_markers: Node = $CauldronMarkers
 @onready var goblin_markers: Node = $GoblinMarkers
 @onready var ui: CanvasLayer = $UI
+@onready var coin_sount_stream_player: AudioStreamPlayer2D = $CoinSoundStreamPlayer
+
+var coin_sounds: Array = [
+	"res://assets/audio/coin1.mp3",
+	"res://assets/audio/coin2.wav",
+]
 
 
 func _ready() -> void:
@@ -21,6 +27,11 @@ func _on_potion_picked_up(goblin: Goblin) -> void:
 
 
 func _on_potion_delivered() -> void:
+	var random_index = randi() % coin_sounds.size()
+	var audio_file = coin_sounds[random_index]
+	coin_sount_stream_player.stream = load(audio_file)
+	coin_sount_stream_player.play()
+
 	coins_animation.visible = true
 	coins_animation.play("default")
 	await coins_animation.animation_finished

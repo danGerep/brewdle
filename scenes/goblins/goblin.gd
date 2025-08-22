@@ -6,7 +6,8 @@ class_name Goblin
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var potion_pool_timer: Timer = $PotionPoolTimer
 @onready var voice_timer: Timer = $VoiceTimer
-@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var voice_stream_player: AudioStreamPlayer2D = $VoiceStreamPlayer2D
+@onready var walk_stream_player: AudioStreamPlayer2D = $WalkStreamPlayer2D
 
 @export var movement_speed: float = 40.0
 
@@ -16,9 +17,18 @@ var audio_list: Array = [
 	"res://assets/audio/vicious.mp3",
 ]
 
+var walk_sounds: Array = [
+	"res://assets/audio/walking/footstep_concrete_000.ogg",
+	"res://assets/audio/walking/footstep_concrete_001.ogg",
+	"res://assets/audio/walking/footstep_concrete_002.ogg",
+	"res://assets/audio/walking/footstep_concrete_003.ogg",
+	"res://assets/audio/walking/footstep_concrete_004.ogg",
+]
+
 var busy = false
 var holding_potion = false
 var last_direction: Vector2 = Vector2.DOWN
+var have_walking_sounds = false
 
 
 func _ready() -> void:
@@ -26,6 +36,7 @@ func _ready() -> void:
 	potion_pool_timer.timeout.connect(_check_potion_pool)
 	voice_timer.timeout.connect(_on_voice_timer_timeout)
 	update_animation()
+	have_walking_sounds = randi() % 10 == 0
 
 
 func set_movement_target(movement_target: Vector2):
@@ -57,11 +68,21 @@ func _physics_process(_delta):
 	else:
 		_on_velocity_computed(velocity)
 
+	if busy:
+		_walk_sound()
+
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 	update_animation()
 	move_and_slide()
+
+
+func _walk_sound():
+	if busy and have_walking_sounds and not walk_stream_player.playing:
+		walk_stream_player.pitch_scale = 0.3
+		walk_stream_player.stream = load(walk_sounds[3])
+		walk_stream_player.play()
 
 
 func _check_potion_pool() -> void:
@@ -106,8 +127,8 @@ func update_animation():
 
 
 func _on_voice_timer_timeout() -> void:
-	if holding_potion and randi() % 10 == 0:
+	if holding_potion and randf() <= 0.10:
 		var random_index = randi() % audio_list.size()
 		var audio_file = audio_list[random_index]
-		audio_stream_player.stream = load(audio_file)
-		audio_stream_player.play()
+		voice_stream_player.stream = load(audio_file)
+		voice_stream_player.play()

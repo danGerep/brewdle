@@ -293,8 +293,11 @@ position = Vector2(0, -16)
 wait_time = 0.5
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="VoiceStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="VoiceTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="WalkStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -1.0
