@@ -16,12 +16,22 @@ signal goblin_bought
 
 signal refresh_ui
 
+@warning_ignore("unused_signal")
+signal bonus_collected(text: String)
+@warning_ignore("unused_signal")
+signal bonus_ended
+
 var gold_amount: int = 4000
 var current_cauldron_price: int = 10
 var current_goblin_price: int = 10
 var current_potion_selling_price: int = 1
 var current_better_potion_price: int = 100
 var current_potion_color: Color = Color.WHITE
+
+var goblin_speed_bonus: float = 1.0
+var potion_value_bonus: int = 0
+
+var bonus_enabled: bool = false
 
 
 func _ready() -> void:

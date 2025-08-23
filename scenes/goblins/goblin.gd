@@ -61,7 +61,7 @@ func _physics_process(_delta):
 
 	var next_path_position: Vector2 = navigation_agent_2d.get_next_path_position()
 	var direction: Vector2 = global_position.direction_to(next_path_position)
-	velocity = direction * movement_speed
+	velocity = direction * movement_speed * GameManager.goblin_speed_bonus
 
 	if navigation_agent_2d.avoidance_enabled:
 		navigation_agent_2d.set_velocity(velocity)

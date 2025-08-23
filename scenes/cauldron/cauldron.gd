@@ -45,4 +45,3 @@ func _on_timer_timeout() -> void:
 
 func remove_potion_used_slot(index: int) -> void:
 	potion_dictionary[index] = false
-	print(potion_dictionary)

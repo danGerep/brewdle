@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://detjgj5pw3384"]
+
+[ext_resource type="Script" uid="uid://bupp3y7etgo04" path="res://scenes/powerup/goblin_speed.gd" id="1_0ur05"]
+[ext_resource type="Texture2D" uid="uid://dcvpnw3m3gr0l" path="res://assets/16.png" id="2_b85ve"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8duvp"]
+radius = 7.0
+
+[node name="GoblinSpeed" type="Area2D"]
+script = ExtResource("1_0ur05")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b85ve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8duvp")

@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var better_potion_button: Button = %PotionButton
 @onready var label_placeholder: Marker2D = %LabelPlaceholder
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var bonus_label: Label = %BonusLabel
 
 var click_sound: AudioStream = preload("res://assets/audio/ui/drop_004.ogg")
 
@@ -13,12 +14,27 @@ var click_sound: AudioStream = preload("res://assets/audio/ui/drop_004.ogg")
 func _ready() -> void:
 	GameManager.refresh_ui.connect(_on_refresh_ui)
 	GameManager.potion_sold.connect(_on_potion_sold)
+	GameManager.bonus_collected.connect(_on_bonus_collected)
+	GameManager.bonus_ended.connect(_on_bonus_ended)
 
 	cauldron_button.pressed.connect(_on_cauldron_button_pressed)
 	goblin_button.pressed.connect(_on_goblin_button_pressed)
 	better_potion_button.pressed.connect(_on_better_potion_button_pressed)
 
+	bonus_label.text = ""
+
 	_on_refresh_ui()
+
+
+func _on_bonus_ended() -> void:
+	bonus_label.text = ""
+
+
+func _on_bonus_collected(text: String) -> void:
+	bonus_label.text = text
+	var flash_tween = create_tween()
+	flash_tween.tween_property(bonus_label, "modulate", Color(1, 1, 0), 0.0)
+	flash_tween.tween_property(bonus_label, "modulate", Color(1, 1, 1), 0.5)
 
 
 func _on_refresh_ui() -> void:
@@ -102,7 +118,10 @@ func _on_potion_sold() -> void:
 
 	add_child(floating_text)
 
-	var popup_text = "+%s G" % GameManager.current_potion_selling_price
+	var potion_total_value = (
+		GameManager.current_potion_selling_price + GameManager.potion_value_bonus
+	)
+	var popup_text = "+%s G" % potion_total_value
 	var start_position = (
 		label_placeholder.global_position + Vector2(randi_range(-20, 20), randi_range(-20, -20))
 	)

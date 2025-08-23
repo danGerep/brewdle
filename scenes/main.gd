@@ -6,10 +6,17 @@ extends Node2D
 @onready var goblin_markers: Node = $GoblinMarkers
 @onready var ui: CanvasLayer = $UI
 @onready var coin_sount_stream_player: AudioStreamPlayer2D = $CoinSoundStreamPlayer
+@onready var powerup_timer: Timer = $PowerUpTimer
+@onready var path_follow_2d: PathFollow2D = %PathFollow2D
 
 var coin_sounds: Array = [
 	"res://assets/audio/coin1.mp3",
 	"res://assets/audio/coin2.wav",
+]
+
+var cursor_textures: Array[Texture2D] = [
+	preload("res://assets/mouse-pointer.png"),
+	preload("res://assets/mouse-pointer-click.png"),
 ]
 
 
@@ -18,6 +25,16 @@ func _ready() -> void:
 	GameManager.potion_delivered.connect(_on_potion_delivered)
 	GameManager.cauldron_bought.connect(_on_cauldron_bought)
 	GameManager.goblin_bought.connect(_on_goblin_bought)
+
+	powerup_timer.timeout.connect(_on_powerup_timeout)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			Input.set_custom_mouse_cursor(cursor_textures[1])
+		else:
+			Input.set_custom_mouse_cursor(cursor_textures[0])
 
 
 # This happens here because I need to tell the Goblin where to go.
@@ -67,3 +84,18 @@ func _on_goblin_bought() -> void:
 		marker.add_child(goblin_instance)
 		goblin_instance.global_position = marker.global_position
 		goblins.append(goblin_instance)
+
+
+var power_ups: Array = [
+	preload("res://scenes/powerup/goblin_speed.tscn"),
+	preload("res://scenes/powerup/potion_value.tscn"),
+]
+
+
+func _on_powerup_timeout() -> void:
+	path_follow_2d.progress_ratio = randi()
+
+	var random_index = randi() % power_ups.size()
+	var powerup_scene = power_ups[random_index].instantiate()
+	powerup_scene.global_position = path_follow_2d.position
+	add_child(powerup_scene)
