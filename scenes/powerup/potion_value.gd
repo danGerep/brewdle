@@ -3,6 +3,7 @@ extends Area2D
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
 
 
@@ -28,3 +29,7 @@ func _on_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) ->
 
 func _on_mouse_entered() -> void:
 	scale = Vector2(2.0, 2.0)
+
+
+func _on_mouse_exited() -> void:
+	scale = Vector2(1.0, 1.0)
