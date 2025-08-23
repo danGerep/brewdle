@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var bonus_label: Label = %BonusLabel
 
 var click_sound: AudioStream = preload("res://assets/audio/ui/drop_004.ogg")
+var bonus_sound: AudioStream = preload("res://assets/audio/ui/glass_006.ogg")
 
 
 func _ready() -> void:
@@ -35,6 +36,9 @@ func _on_bonus_collected(text: String) -> void:
 	var flash_tween = create_tween()
 	flash_tween.tween_property(bonus_label, "modulate", Color(1, 1, 0), 0.0)
 	flash_tween.tween_property(bonus_label, "modulate", Color(1, 1, 1), 0.5)
+	audio_stream_player.stream = bonus_sound
+	audio_stream_player.pitch_scale = randf_range(0.5, 1.5)
+	audio_stream_player.play()
 
 
 func _on_refresh_ui() -> void:

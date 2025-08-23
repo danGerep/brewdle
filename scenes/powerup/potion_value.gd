@@ -27,4 +27,4 @@ func _on_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) ->
 
 
 func _on_mouse_entered() -> void:
-	print("Power-up area entered")
+	scale = Vector2(2.0, 2.0)
