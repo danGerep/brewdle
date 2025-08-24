@@ -76,18 +76,25 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/PanelContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="CauldronButton" type="Button" parent="Control/MarginContainer/PanelContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CauldronButton" type="Button" parent="Control/MarginContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_g5kmx")
 theme_type_variation = &"cauldron_button"
 text = "10"
-expand_icon = true
 
-[node name="GoblinButton" type="Button" parent="Control/MarginContainer/PanelContainer2/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GoblinButton" type="Button" parent="Control/MarginContainer/PanelContainer2/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_g5kmx")

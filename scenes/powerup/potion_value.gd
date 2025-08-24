@@ -1,7 +1,12 @@
 extends Area2D
 
+@onready var power_up_tutorial_label: Label = $PowerUpTutorialLabel
+
 
 func _ready() -> void:
+	if not GameManager.power_up_tutorial_displayed:
+		power_up_tutorial_label.visible = true
+		GameManager.power_up_tutorial_displayed = true
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)

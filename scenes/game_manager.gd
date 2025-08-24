@@ -33,6 +33,8 @@ var potion_value_bonus: int = 0
 
 var bonus_enabled: bool = false
 
+var power_up_tutorial_displayed: bool = false
+
 
 func _ready() -> void:
 	potion_sold.connect(_on_potion_sold)

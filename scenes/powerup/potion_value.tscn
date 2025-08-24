@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://mxhwt2tkpqkf"]
+[gd_scene load_steps=5 format=3 uid="uid://mxhwt2tkpqkf"]
 
 [ext_resource type="Script" uid="uid://nv53prdtako4" path="res://scenes/powerup/potion_value.gd" id="1_mjjcp"]
 [ext_resource type="Texture2D" uid="uid://c0fv8msfdm71i" path="res://assets/20.png" id="2_mjjcp"]
+[ext_resource type="Theme" uid="uid://dv2g7xrgnngvk" path="res://scenes/ui/ui.tres" id="3_nfvti"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8duvp"]
 radius = 7.0
@@ -14,3 +15,19 @@ texture = ExtResource("2_mjjcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8duvp")
+
+[node name="PowerUpTutorialLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -100.0
+offset_top = 24.0
+offset_right = 99.0
+offset_bottom = 55.0
+size_flags_horizontal = 10
+theme = ExtResource("3_nfvti")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "This is a power up.
+Click it!"
+horizontal_alignment = 1
