@@ -1,19 +1,21 @@
 extends Area2D
 
 @onready var power_up_tutorial_label: Label = $PowerUpTutorialLabel
+var speed = 50.0
 
 
 func _ready() -> void:
 	if not GameManager.power_up_tutorial_displayed:
 		power_up_tutorial_label.visible = true
 		GameManager.power_up_tutorial_displayed = true
+		speed = 25.0
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
 
 
-func _process(_delta: float) -> void:
-	position = position + Vector2(0, 0.5)
+func _process(delta: float) -> void:
+	position = position + Vector2(0, speed * delta)
 
 
 func _on_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
