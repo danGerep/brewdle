@@ -41,7 +41,7 @@ func _ready() -> void:
 
 
 func _on_potion_sold() -> void:
-	gold_amount += GameManager.current_potion_selling_price
+	gold_amount += GameManager.current_potion_selling_price + GameManager.potion_value_bonus
 	refresh_ui.emit()
 
 

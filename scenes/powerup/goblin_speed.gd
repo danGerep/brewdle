@@ -1,7 +1,10 @@
 extends Area2D
 
 @onready var power_up_tutorial_label: Label = $PowerUpTutorialLabel
+@onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+
 var speed = 50.0
+var bonus_timer: Timer = null
 
 
 func _ready() -> void:
@@ -9,9 +12,24 @@ func _ready() -> void:
 		power_up_tutorial_label.visible = true
 		GameManager.power_up_tutorial_displayed = true
 		speed = 25.0
+
+	bonus_timer = Timer.new()
+	add_child(bonus_timer)
+	bonus_timer.timeout.connect(_on_bonus_timeout)
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
+	visible_on_screen.screen_exited.connect(
+		func() -> void:
+			if bonus_timer.is_stopped():
+				call_deferred("queue_free")
+	)
+
+
+func _on_bonus_timeout() -> void:
+	GameManager.goblin_speed_bonus = 1.0
+	GameManager.bonus_ended.emit()
+	queue_free()
 
 
 func _process(delta: float) -> void:
@@ -23,15 +41,11 @@ func _on_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) ->
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			input_event.disconnect(_on_input_event)
 			visible = false
-
+			bonus_timer.wait_time = 5.0
+			bonus_timer.start()
 			var speed_bonus = randf_range(1.5, 2.5)
 			GameManager.goblin_speed_bonus = speed_bonus
 			GameManager.bonus_collected.emit("+%.1fx Goblin Speed!" % speed_bonus)
-
-			await get_tree().create_timer(5.0).timeout
-			GameManager.goblin_speed_bonus = 1.0
-			GameManager.bonus_ended.emit()
-			queue_free()
 
 
 func _on_mouse_entered() -> void:
