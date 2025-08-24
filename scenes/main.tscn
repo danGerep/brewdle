@@ -242,7 +242,7 @@ animations = [{
 
 [sub_resource type="Curve2D" id="Curve2D_muem4"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 16, 46, 0, 0, 0, 0, 461, 46)
+"points": PackedVector2Array(0, 0, 0, 0, 79, 47, 0, 0, 0, 0, 398, 47)
 }
 point_count = 2
 
@@ -387,4 +387,4 @@ curve = SubResource("Curve2D_muem4")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(16, 46)
+position = Vector2(79, 47)

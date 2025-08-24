@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 func _on_bonus_timeout() -> void:
-	GameManager.goblin_speed_bonus = 1.0
+	GameManager.potion_value_bonus = 0
 	GameManager.bonus_ended.emit()
 	queue_free()
 
