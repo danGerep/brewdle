@@ -93,6 +93,7 @@ var power_ups: Array = [
 
 
 func _on_powerup_timeout() -> void:
+	powerup_timer.wait_time = randf_range(30.0, 60.0)
 	path_follow_2d.progress_ratio = randi()
 
 	var random_index = randi() % power_ups.size()

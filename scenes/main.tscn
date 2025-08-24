@@ -343,7 +343,7 @@ position = Vector2(88, 152)
 position = Vector2(88, 168)
 
 [node name="PowerUpTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 30.0
 autostart = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
